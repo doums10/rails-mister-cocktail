@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :cocktails,  :ingredients, :doses 
-  
+  resources :cocktails do
+  	collection do 
+	resources :cocktails,  :ingredients, :doses 
+  	end
+	end
 end
