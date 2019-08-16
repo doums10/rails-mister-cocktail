@@ -1,31 +1,18 @@
-<div class="container mt-5">
-  <p id="notice"><%= notice %></p>
+ <div class="container mt-5">
+   <%= link_to "Back", cocktails_path %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @cocktail.name %>
-</p>
 
-<div class="container mt-5">
-<%= simple_form_for(@cocktail) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <h1><%= @cocktail.name%></h1>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-     
-    <%= f.input :ingredients, priority: [ "Orange" ], collection: [ "1", "2", "3"] %>
-    
-  </div>
+<ul>
+  <% @cocktail.doses.each do |dose| %>
+    <li><%= dose.description %> <%= dose.ingredient.name %></li>
+  <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, class:"btn btn-primary" %>
-  </div>
-<% end %>
+</ul>
 
-</div> 
+ <%= link_to "Add Ingredient", new_cocktail_dose_path(@cocktail) %>
 
-<%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
-<%= link_to 'Back', cocktails_path %>
+ </div>
 
-</div>
+ 
